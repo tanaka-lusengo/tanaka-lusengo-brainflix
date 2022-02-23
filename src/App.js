@@ -1,14 +1,16 @@
 import "./App.scss";
-import Header from "./components/Header/Header";
+import Header from "./Components/Header/Header";
+import Hero from "./Components/Hero/Hero";
 
 function App() {
   return (
     <div className="App">
       <Header />
-      {/* Hero */}
+      <Hero />
       {/* Main Content */}
-      {/* Main - Comments Section */}
-      {/* Main - Aside */}
+      {/* Video Details */}
+      {/* Comments Section */}
+      {/* Aside */}
     </div>
   );
 }
