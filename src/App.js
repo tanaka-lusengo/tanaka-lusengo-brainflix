@@ -1,5 +1,5 @@
 import "./App.scss";
-import Header from "./Components/HeaderComponent/Header";
+import Header from "./components/Header/Header";
 
 function App() {
   return (
@@ -7,8 +7,8 @@ function App() {
       <Header />
       {/* Hero */}
       {/* Main Content */}
-      {/* Comments Section */}
-      {/* Aside - Next videos */}
+      {/* Main - Comments Section */}
+      {/* Main - Aside */}
     </div>
   );
 }

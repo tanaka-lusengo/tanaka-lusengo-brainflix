@@ -1,0 +1,58 @@
+@use "../../../styles/partials/core/mixins" as *;
+@use "../../../styles/partials/core/variables" as *;
+
+.button {
+  &__container {
+    margin: 1rem auto 1rem; // 16px
+    @include flex(null, center);
+    @include height-width(2.5rem, 100%); // 40px
+    border-radius: 0.25rem; // 4px
+    padding: 0 0.625; // 10px
+    background-color: $primary-2;
+  }
+
+  &__icon {
+    flex-grow: 0;
+    padding-left: 0.625rem; // 10px
+  }
+
+  &__button {
+    background: none;
+    border: none;
+    outline: none;
+    color: $primary-4;
+    margin-right: 1.875rem; // 30px
+    flex-grow: 1;
+  }
+}
+
+// tablet
+@include tablet {
+  .button {
+    &__container {
+      width: 9.375rem; // 150px
+      margin-right: 1.5rem; // 24px
+    }
+
+    &__button {
+      margin: 0;
+    }
+  }
+}
+
+// desktop {
+@include desktop {
+  .button {
+    &__container {
+      cursor: pointer;
+
+      &:hover {
+        background-color: $secondary-2;
+      }
+    }
+
+    &__button {
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,72 @@
+@use "../../styles/partials/core/mixins" as *;
+@use "../../styles/partials/core/variables" as *;
+
+.header {
+  margin: 0 1rem;
+  text-align: center;
+
+  &__logo {
+    @include height-width(1.563rem, 7.5rem); // 25px 120px
+    margin: 1.5rem 0 1rem; // 24px 16px
+  }
+
+  &__nav-search-avatar-container {
+    @include flex(center, center);
+  }
+
+  &__nav-profile-avatar--display-mobile {
+    @include background-image-avatar(
+      url("../../assets/images/Mohan-muruge.jpg")
+    );
+    @include height-width(2.25rem, 2.25rem); // 36px
+  }
+
+  &__nav-profile-avatar--display-tablet {
+    display: none;
+  }
+}
+
+@include tablet {
+  .header {
+    margin: 0 auto;
+    max-width: 80rem; // 1280px
+
+    &__main-container {
+      margin: 0 2.25rem; // 36px
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__logo {
+      margin: 2.25rem 0 1.5rem; // 36px 24px
+    }
+
+    &__nav {
+      @include flex(space-between, center);
+    }
+
+    &__nav-search-avatar-container {
+      display: inline-block;
+    }
+
+    &__nav-profile-avatar--display-mobile {
+      display: none;
+    }
+
+    &__nav-profile-avatar--display-tablet {
+      @include background-image-avatar(
+        url("../../assets/images/Mohan-muruge.jpg")
+      );
+      @include height-width(2.5rem, 2.5rem); // 40px
+      display: inline-block;
+    }
+  }
+}
+
+@include desktop {
+  .header {
+    &__logo {
+      cursor: pointer;
+    }
+  }
+}

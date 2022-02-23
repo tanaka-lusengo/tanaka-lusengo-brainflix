@@ -1,18 +1,38 @@
 @use "../../../styles/partials/core/mixins" as *;
 @use "../../../styles/partials/core/variables" as *;
 
-.header__nav-search-field--state {
-  @include height-width(2.25rem, 15rem);
+.search-field {
+  @include flex(null, center);
+  background-color: $secondary-4;
   border-radius: 0.25rem; // 4px
-  padding: 0.75rem; // 12px
-  border: 0.063rem solid $secondary-3;
+  border: 0.063rem solid $secondary-3; // 1px
+  margin-right: 1rem; // 16px
+  width: 15rem; // 240px
 
-  &:focus {
-    outline: none;
-    border: 0.125rem solid $primary-2;
+  &__nav-search-icon {
+    padding-left: 0.625rem; // 10px
   }
 
-  &:focus:invalid {
-    border-color: #d22d2d;
+  &__input--state {
+    @include height-width(2.25rem, 100%); //36px
+    background: none;
+    border: none;
+    outline: none;
+    border-radius: 0.25rem; // 4px
+    padding: 0.75rem; // 12px
+  }
+}
+
+@include tablet {
+  .search-field {
+    &__nav-search-container {
+      margin-right: 1.5rem; // 24px
+    }
+  }
+}
+
+@include desktop {
+  .search-field:focus-within {
+    border: 0.125rem solid $primary-2; // 2px
   }
 }
