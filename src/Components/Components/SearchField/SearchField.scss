@@ -1,0 +1,18 @@
+@use "../../../styles/partials/core/mixins" as *;
+@use "../../../styles/partials/core/variables" as *;
+
+.header__nav-search-field--state {
+  @include height-width(2.25rem, 15rem);
+  border-radius: 0.25rem; // 4px
+  padding: 0.75rem; // 12px
+  border: 0.063rem solid $secondary-3;
+
+  &:focus {
+    outline: none;
+    border: 0.125rem solid $primary-2;
+  }
+
+  &:focus:invalid {
+    border-color: #d22d2d;
+  }
+}
