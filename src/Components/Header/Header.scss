@@ -13,15 +13,15 @@
   &__nav-search-avatar-container {
     @include flex(center, center);
   }
+}
 
-  &__nav-profile-avatar--display-mobile {
-    @include background-image-avatar(
-      url("../../assets/images/Mohan-muruge.jpg")
-    );
+.avatar {
+  @include background-image-avatar(url("../../assets/images/Mohan-muruge.jpg"));
+  &__img--display-mobile {
     @include height-width(2.25rem, 2.25rem); // 36px
   }
 
-  &__nav-profile-avatar--display-tablet {
+  &__img--display-tablet {
     display: none;
   }
 }
@@ -48,12 +48,13 @@
     &__nav-search-avatar-container {
       display: inline-block;
     }
-
-    &__nav-profile-avatar--display-mobile {
+  }
+  .avatar {
+    &__img--display-mobile {
       display: none;
     }
 
-    &__nav-profile-avatar--display-tablet {
+    &__img--display-tablet {
       @include background-image-avatar(
         url("../../assets/images/Mohan-muruge.jpg")
       );

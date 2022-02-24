@@ -13,14 +13,14 @@ function Header() {
         <nav className="header__nav">
           <div className="header__nav-search-avatar-container">
             <SearchField />
-            <div className="header__nav-profile-avatar--display-mobile"></div>
+            <div className="avatar avatar__img--display-mobile"></div>
           </div>
           <Button
             buttonName={"UPLOAD"}
             iconSrc={uploadIcon}
             iconAlt={"upload button icon"}
           />
-          <div className="header__nav-profile-avatar--display-tablet"></div>
+          <div className="avatar avatar__img--display-tablet"></div>
         </nav>
       </div>
     </header>

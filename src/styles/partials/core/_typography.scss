@@ -37,7 +37,7 @@ h3 {
 }
 
 p {
-  @include font-source(0.813rem, 1.125rem, 400); // Body & Footer
+  @include font-source(0.813rem, 1.125rem, 400); // Body
 }
 
 // default - desktop & tablet

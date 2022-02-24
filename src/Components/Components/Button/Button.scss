@@ -2,6 +2,8 @@
 @use "../../../styles/partials/core/variables" as *;
 
 .button {
+  @include font-source(0.75rem, 1.25rem, 700); // LABELS & BUTTONS
+
   &__container {
     margin: 1rem auto 1rem; // 16px
     @include flex(null, center);
