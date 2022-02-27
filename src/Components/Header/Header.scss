@@ -2,7 +2,7 @@
 @use "../../styles/partials/core/variables" as *;
 
 .header {
-  margin: 0 1rem;
+  margin: 0 1rem 1rem; // 16px
   text-align: center;
 
   &__logo {
@@ -19,6 +19,7 @@
   @include background-image-avatar(url("../../assets/images/Mohan-muruge.jpg"));
   &__img--display-mobile {
     @include height-width(2.25rem, 2.25rem); // 36px
+    margin-bottom: 1rem; // 16px
   }
 
   &__img--display-tablet {
@@ -32,13 +33,12 @@
     max-width: 80rem; // 1280px
 
     &__main-container {
-      margin: 0 2.25rem; // 36px
-      display: flex;
-      justify-content: space-between;
+      @include flex(space-between, center);
+      margin: 2.25rem 2.25rem 1.5rem; // 36px 16px
     }
 
     &__logo {
-      margin: 2.25rem 0 1.5rem; // 36px 24px
+      margin: 0;
     }
 
     &__nav {
@@ -49,6 +49,7 @@
       display: inline-block;
     }
   }
+
   .avatar {
     &__img--display-mobile {
       display: none;

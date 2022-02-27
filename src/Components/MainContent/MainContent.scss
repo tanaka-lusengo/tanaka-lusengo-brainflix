@@ -1,0 +1,80 @@
+@use "../../styles/partials/core/mixins" as *;
+@use "../../styles/partials/core/variables" as *;
+
+.main {
+  &__content {
+    margin: 0 1rem; // 16px
+  }
+
+  &__title-container {
+    margin-bottom: 1rem; // 16px
+  }
+
+  &__title {
+    margin-top: 1.5rem; // 24px
+  }
+
+  &__details-container {
+    @include flex(space-between, center);
+    margin: 1rem 0; // 16px
+  }
+
+  &__sub-details-right {
+    display: flex;
+  }
+
+  &__data-channel {
+    font-weight: 700;
+  }
+
+  &__data-timestamp {
+    color: $primary-3;
+  }
+
+  &__data-timestamp,
+  &__sub-details-right-likes {
+    margin-top: 0.5rem; //8px
+  }
+
+  &__data-views-icon,
+  &__data-likes-icon {
+    margin-right: 0.5rem; // 8px
+  }
+
+  &__data-description {
+    margin: 1rem 1rem; // 16px
+  }
+}
+
+@include tablet {
+  .main {
+    margin: 0 auto;
+    max-width: 80rem; // 1280px
+
+    &__content {
+      margin: 0 2.25rem; // 36px
+    }
+
+    &__details-container {
+      margin-bottom: 0.5rem; // 8px
+    }
+
+    &__title {
+      margin: 2.25rem 0 1.5rem; // 36px 24px
+    }
+
+    &__details-left,
+    &__details-right {
+      @include flex(null, center);
+    }
+
+    &__data-timestamp,
+    &__sub-details-right-likes {
+      margin: 0 0 0 1.5rem; // 24px
+    }
+
+    &__data-description {
+      margin: 1rem 2.25rem; // 16px 36px
+    }
+  }
+}

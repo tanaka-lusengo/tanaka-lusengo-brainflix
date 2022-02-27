@@ -1,0 +1,36 @@
+@use "../../../styles/partials/core/mixins" as *;
+@use "../../../styles/partials/core/variables" as *;
+
+.comments {
+  &__post-container {
+    @include flex(space-between, null);
+    width: auto;
+    margin: 1rem 1rem; // 16px
+  }
+
+  &__title-date-container {
+    @include flex(space-between, center);
+    padding-bottom: 0.75rem; // 12px
+  }
+
+  &__date {
+    color: $primary-3;
+    font-weight: 400;
+  }
+}
+
+@include tablet {
+  .comments {
+    &__post-container {
+      margin: 1rem 2.25rem; // 16px 36px
+    }
+
+    &__avatar-container {
+      flex-basis: 0;
+    }
+
+    &__post-user-input {
+      flex-basis: 100%;
+    }
+  }
+}

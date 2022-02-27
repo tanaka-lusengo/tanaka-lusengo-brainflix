@@ -1,0 +1,25 @@
+@use "../../styles/partials/core/mixins" as *;
+@use "../../styles/partials/core/variables" as *;
+
+.hero {
+  margin: 0 auto;
+  background-color: $secondary-1;
+  text-align: center;
+
+  &__video {
+    width: 100%;
+  }
+}
+
+@include tablet {
+  .hero {
+    margin: 0 auto;
+
+    &__video {
+      @include max-height-width(45rem, 75.5rem); // 720px 1208px
+      object-fit: cover;
+      margin: 0 auto;
+      aspect-ratio: 16 / 9;
+    }
+  }
+}

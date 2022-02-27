@@ -1,0 +1,39 @@
+@use "../../../styles/partials/core/mixins" as *;
+@use "../../../styles/partials/core/variables" as *;
+
+.aside {
+  margin: 0 auto;
+
+  &__content-container {
+    display: flex;
+    margin: 0 1rem; // 16px
+  }
+
+  &__img {
+    @include height-width(4.375rem, 6.875rem); // 70px 110px
+    border-radius: 0.25rem; // 4px
+    margin-bottom: 1rem; // 16px
+  }
+
+  &__text-container {
+    @include flex(space-between, null, column);
+    margin-left: 1rem; // 16px
+    margin-bottom: 1rem; // 16px
+  }
+}
+
+@include tablet {
+  .aside {
+    &__content-container {
+      margin: 0 2.25rem; // 36px
+    }
+  }
+}
+
+@include desktop {
+  .aside {
+    &__text-container {
+      width: 10.625rem; // 170px
+    }
+  }
+}

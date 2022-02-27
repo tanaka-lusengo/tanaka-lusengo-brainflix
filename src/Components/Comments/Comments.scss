@@ -1,0 +1,56 @@
+@use "../../styles/partials/core/mixins" as *;
+@use "../../styles/partials/core/variables" as *;
+
+.comments {
+  &__comment-counter {
+    font-weight: 700;
+    padding-bottom: 1rem; // 16px
+    margin: 0 1rem; // 16px
+  }
+
+  &__input-container {
+    display: flex;
+    margin: 0 1rem; // 16px
+  }
+
+  &__title {
+    color: $primary-3;
+    font-weight: 500;
+  }
+
+  &__avatar-container {
+    margin: 1.5rem 1rem 0 0; // 24px 16px
+  }
+
+  &__avatar {
+    @include height-width(2.25rem, 2.25rem); // 36px
+  }
+
+  &__avatar-form {
+    @include background-image-avatar(
+      url("../../assets/images/Mohan-muruge.jpg")
+    );
+  }
+
+  &__avatar-past {
+    @include background-image-avatar-anon($secondary-3);
+  }
+}
+
+@include tablet {
+  .comments {
+    margin: 0 auto;
+    max-width: 80rem; // 1280px
+    &__avatar {
+      @include height-width(2.5rem, 2.5rem); // 40px
+    }
+
+    &__comment-counter {
+      margin: 0 2.25rem; // 36px
+    }
+
+    &__input-container {
+      margin: 0 2.25rem; // 36px
+    }
+  }
+}

@@ -5,12 +5,11 @@
   @include font-source(0.75rem, 1.25rem, 700); // LABELS & BUTTONS
 
   &__container {
-    margin: 1rem auto 1rem; // 16px
     @include flex(null, center);
     @include height-width(2.5rem, 100%); // 40px
+    background-color: $primary-2;
     border-radius: 0.25rem; // 4px
     padding: 0 0.625; // 10px
-    background-color: $primary-2;
   }
 
   &__icon {
@@ -26,23 +25,34 @@
     margin-right: 1.875rem; // 30px
     flex-grow: 1;
   }
+
+  &__container-comment {
+    margin-bottom: 1rem; // 16px
+  }
 }
 
-// tablet
 @include tablet {
   .button {
     &__container {
       width: 9.375rem; // 150px
-      margin-right: 1.5rem; // 24px
     }
 
     &__button {
       margin: 0;
     }
+
+    &__container-upload {
+      margin-right: 1rem; // 16px
+    }
+
+    &__container-comment {
+      width: 15.625rem; //250px
+      margin-left: 1.5rem; // 24px
+      margin-bottom: 0;
+    }
   }
 }
 
-// desktop {
 @include desktop {
   .button {
     &__container {

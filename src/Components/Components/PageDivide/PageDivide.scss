@@ -1,2 +1,32 @@
 @use "../../../styles/partials/core/mixins" as *;
 @use "../../../styles/partials/core/variables" as *;
+
+.page-divide {
+  border: none;
+  color: $secondary-3;
+  background-color: $secondary-3;
+  align-items: center;
+  height: 0.063rem; // 1px
+  margin: 0 1rem; // 16px
+
+  &__item--mobile {
+    margin: 0;
+  }
+}
+
+@include tablet {
+  .page-divide {
+    margin: 0 2.25rem; // 36px
+
+    &__item--mobile {
+      display: none;
+    }
+  }
+}
+
+@include desktop {
+  .page-divide {
+    margin-right: 0;
+    margin-left: 2.25rem; // 36px
+  }
+}

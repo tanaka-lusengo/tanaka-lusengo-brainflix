@@ -1,7 +1,7 @@
 import React from "react";
 import "./Header.scss";
 import SearchField from "../Components/SearchField/SearchField";
-import Button from "../Components/Button/Button";
+import { ButtonUpload } from "../Components/Button/Button";
 import logo from "../../assets/logo/BrainFlix-logo.svg";
 import uploadIcon from "../../assets/icons/upload.svg";
 
@@ -15,7 +15,7 @@ function Header() {
             <SearchField />
             <div className="avatar avatar__img--display-mobile"></div>
           </div>
-          <Button
+          <ButtonUpload
             buttonName={"UPLOAD"}
             iconSrc={uploadIcon}
             iconAlt={"upload button icon"}

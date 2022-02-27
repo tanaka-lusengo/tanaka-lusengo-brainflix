@@ -1,14 +1,12 @@
 @use "./variables" as *;
 
 // Breakpoints
-// media query for tablet
 @mixin tablet {
   @media (min-width: 768px) {
     @content;
   }
 }
 
-// media query for landscape, medium pixel density desktops
 @mixin desktop {
   @media (min-width: 1280px) {
     @content;
@@ -37,18 +35,10 @@
   width: $width;
 }
 
-// height-width
+// max-height-width
 @mixin max-height-width($height, $width) {
   max-height: $height;
   max-width: $width;
-}
-
-// hero-image
-@mixin background-image-hero($image) {
-  background-image: $image;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
 }
 
 // avatar-image user profile

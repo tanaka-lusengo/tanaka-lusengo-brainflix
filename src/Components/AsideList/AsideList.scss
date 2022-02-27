@@ -1,0 +1,26 @@
+@use "../../styles/partials/core/mixins" as *;
+@use "../../styles/partials/core/variables" as *;
+
+.asideList {
+  &__title {
+    color: $primary-3;
+    margin: 1rem; // 16px
+  }
+}
+
+@include tablet {
+  .asideList {
+    margin: 0 auto;
+    max-width: 80rem; // 1280px
+
+    &__title {
+      margin: 1rem 2.25rem; // 16px 36px
+    }
+  }
+}
+
+@include desktop {
+  .asideList {
+    border-left: 0.063rem solid $secondary-3;
+  }
+}
