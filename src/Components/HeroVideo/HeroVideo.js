@@ -15,4 +15,18 @@ function HeroVideo({ currentVideo }) {
   );
 }
 
-export default HeroVideo;
+function HeroVideoClicked({ clickedVideo }) {
+  return (
+    <section className="hero">
+      <div className="hero__video-container">
+        <video
+          className="hero__video"
+          controls
+          poster={clickedVideo.image}
+        ></video>
+      </div>
+    </section>
+  );
+}
+
+export { HeroVideo, HeroVideoClicked };

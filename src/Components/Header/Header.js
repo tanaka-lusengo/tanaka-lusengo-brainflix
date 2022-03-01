@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Header.scss";
 import SearchField from "../Components/SearchField/SearchField";
 import { ButtonUpload } from "../Components/Button/Button";
@@ -9,17 +10,21 @@ function Header() {
   return (
     <header className="header">
       <div className="header__main-container">
-        <img className="header__logo" src={logo} alt="brainflix logo" />
+        <Link to="/">
+          <img className="header__logo" src={logo} alt="brainflix logo" />
+        </Link>
         <nav className="header__nav">
           <div className="header__nav-search-avatar-container">
             <SearchField />
             <div className="avatar avatar__img--display-mobile"></div>
           </div>
-          <ButtonUpload
-            buttonName={"UPLOAD"}
-            iconSrc={uploadIcon}
-            iconAlt={"upload button icon"}
-          />
+          <Link to="/upload-page">
+            <ButtonUpload
+              buttonName={"UPLOAD"}
+              iconSrc={uploadIcon}
+              iconAlt={"upload button icon"}
+            />
+          </Link>
           <div className="avatar avatar__img--display-tablet"></div>
         </nav>
       </div>

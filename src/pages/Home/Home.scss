@@ -1,0 +1,9 @@
+@use "../../styles/partials/core/mixins" as *;
+
+@include desktop {
+  .content-container {
+    margin: 0 auto;
+    max-width: 80rem; // 1280px
+    display: flex;
+  }
+}

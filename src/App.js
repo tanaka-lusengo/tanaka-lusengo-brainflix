@@ -1,55 +1,56 @@
 import React, { Component } from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
 import "./App.scss";
-import Header from "./Components/Header/Header";
-import HeroVideo from "./Components/HeroVideo/HeroVideo";
-import MainContent from "./Components/MainContent/MainContent";
-import Comments from "./Components/Comments/Comments";
-import AsideList from "./Components/AsideList/AsideList";
 import videoDetails from "./data/video-details.json";
 import videos from "./data/videos.json";
+import Header from "./Components/Header/Header";
+import Home from "./pages/Home/Home";
+import VideoDetails from "./pages/VideoDetails/VideoDetails";
+import UploadPage from "./pages/UploadPage/UploadPage";
 
 class App extends Component {
   state = {
-    mainideoDetails: videoDetails,
-    asideVideoList: videos.slice(1),
+    currentAsideVideoList: videos.slice(1),
     currentVideo: videoDetails,
-  };
-
-  handleChangeVideo = (id) => {
-    this.setState({
-      currentVideo: this.state.mainideoDetails.filter((video) => {
-        let newVid;
-        if (video.id === id) {
-          newVid = video;
-        }
-        return newVid;
-      }),
-      asideVideoList: this.state.mainideoDetails.filter((list) => {
-        let newList;
-        if (list.id !== id) {
-          newList = list;
-        }
-        return newList;
-      }),
-    });
+    videoDetailsAsideList: videos,
   };
 
   render() {
     return (
       <div className="App">
         <Header />
-        <HeroVideo currentVideo={this.state.currentVideo[0]} />
-        <div className="content-container">
-          <div className="content-container__left">
-            <MainContent currentVideo={this.state.currentVideo[0]} />
-            <Comments currentVideo={this.state.currentVideo[0]} />
-          </div>
-
-          <AsideList
-            handleChangeVideo={this.handleChangeVideo}
-            mainAsideObj={this.state.asideVideoList}
+        <Switch>
+          <Redirect from="/home" to="/" />
+          <Route
+            path="/"
+            exact
+            render={(routerProps) => (
+              <Home
+                currentVideo={this.state.currentVideo[0]}
+                mainAsideObj={this.state.currentAsideVideoList}
+                {...routerProps}
+              />
+            )}
           />
-        </div>
+          {/* new video details page to load videos that have been clicked */}
+          <Route
+            path="/video-details/:videoId"
+            render={(routerProps) => {
+              const clickedVideo = this.state.currentVideo.find(
+                (video) => video.id === routerProps.match.params.videoId
+              );
+              return (
+                <VideoDetails
+                  mainAsideObj={this.state.videoDetailsAsideList}
+                  clickedVideo={clickedVideo}
+                  {...routerProps}
+                />
+              );
+            }}
+          />
+
+          <Route path="/upload-page" component={UploadPage} />
+        </Switch>
       </div>
     );
   }
