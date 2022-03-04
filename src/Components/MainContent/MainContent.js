@@ -3,7 +3,7 @@ import "./MainContent.scss";
 import {
   PageDivideMobile,
   PageDivideTablet,
-} from "../../Components/Components/PageDivide/PageDivide";
+} from "../../Components/ComponentItems/PageDivide/PageDivide";
 import { Timestamp } from "../../utilities/Timestamp/Timestamp";
 import viewsIcon from "../../assets/icons/views.svg";
 import likesIcon from "../../assets/icons/likes.svg";

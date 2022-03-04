@@ -13,8 +13,12 @@
     margin: 0;
   }
 
-  &__item--upload-page {
+  &__item--upload-page-mobile {
     margin: 0;
+  }
+
+  &__item--upload-page-tablet {
+    display: none;
   }
 }
 
@@ -25,12 +29,27 @@
     &__item--mobile {
       display: none;
     }
+
+    &__item--upload-page-mobile {
+      margin: 0;
+    }
+
+    &__item--upload-page-tablet {
+      display: block;
+      margin: 0;
+    }
   }
 }
 
 @include desktop {
   .page-divide {
-    margin-right: 0;
-    margin-left: 2.25rem; // 36px
+    &__item--display-tablet {
+      margin-right: 0;
+      margin-left: 2.25rem; // 36px
+    }
+
+    &__item--upload-page-tablet {
+      margin: 0;
+    }
   }
 }

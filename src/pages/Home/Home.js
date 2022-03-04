@@ -14,10 +14,13 @@ export default class Home extends Component {
     asideVideoList: [],
   };
 
+  // axios promise to GET all videos - used for aside list of videos
   getAllVideos = () => axios.get(GET_VIDEOS_API_URL);
 
+  // axios promise  to GET specific or selected video details to populate home page and comments
   getSelectedVideo = (videoId) => axios.get(GET_VIDEOS_BY_ID_API_URL(videoId));
 
+  // async function to call above promises and populate current state
   async populateState() {
     const resolve1 = await this.getAllVideos();
     const resolve2 = await this.getSelectedVideo(resolve1.data[0].id);
@@ -26,35 +29,47 @@ export default class Home extends Component {
       selectedVideo: resolve2.data,
     });
   }
-
-  componentDidMount() {
-    console.log("Component Did Mount");
-    let videoId = this.props.match.params.videoId;
-    if (videoId) {
-      this.getSelectedVideo(videoId);
-    } else {
-      this.populateState();
-    }
+  catch(e) {
+    console.log("populateState() error -->", e);
   }
 
+  // mounting phase, calls async function populateSate()
+  componentDidMount() {
+    this.populateState();
+  }
+
+  // checks when side video is clicked if current id === prev id
   componentDidUpdate(prevProps) {
-    console.log("Component Did Update");
     let newId = this.props.match.params.videoId;
     if (newId !== prevProps.match.params.videoId) {
       (async () => {
-        const resolve1 = await this.getSelectedVideo(newId);
-        const resolve2 = await this.getAllVideos();
-        this.setState({
-          selectedVideo: resolve1.data,
-          asideVideoList: resolve2.data,
-        });
+        try {
+          const resolve1 = await this.getAllVideos();
+          // when side video is clicked, update selected video with matching id
+          if (newId) {
+            const resolve2 = await this.getSelectedVideo(newId);
+            this.setState({
+              asideVideoList: resolve1.data,
+              selectedVideo: resolve2.data,
+            });
+          } else {
+            // when home page is clicked - update selected video with original video id at [0] index.
+            const resolve2 = await this.getSelectedVideo(resolve1.data[0].id);
+            this.setState({
+              asideVideoList: resolve1.data,
+              selectedVideo: resolve2.data,
+            });
+          }
+        } catch (e) {
+          console.log("componentDidUpdate() error -->", e);
+        }
       })();
     }
   }
 
-  render() {
-    console.log("Component Did Render");
+  // Form with state function
 
+  render() {
     if (!this.state.selectedVideo) {
       return <p>Page Loading...</p>;
     }

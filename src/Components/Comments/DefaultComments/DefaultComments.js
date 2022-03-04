@@ -1,6 +1,6 @@
 import React from "react";
 import "./DefaultComments.scss";
-import { PageDivideTablet } from "../../Components/PageDivide/PageDivide";
+import { PageDivideTablet } from "../../ComponentItems/PageDivide/PageDivide";
 import { Timestamp } from "../../../utilities/Timestamp/Timestamp";
 
 function DefaultComments({ commentItem }) {

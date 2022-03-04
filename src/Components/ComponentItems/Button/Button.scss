@@ -27,7 +27,11 @@
   }
 
   &__container-comment {
-    margin-bottom: 1rem; // 16px
+    margin: 1rem 0; // 16px
+  }
+
+  &__container-publish {
+    margin: 1.5rem 0 2.25rem; // 24px 36px
   }
 }
 
@@ -48,7 +52,12 @@
     &__container-comment {
       width: 15.625rem; //250px
       margin-left: 1.5rem; // 24px
+      margin-top: 0;
       margin-bottom: 0;
+    }
+
+    &__container-publish {
+      margin: 0;
     }
   }
 }

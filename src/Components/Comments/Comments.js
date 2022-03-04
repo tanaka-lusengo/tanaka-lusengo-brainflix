@@ -1,8 +1,8 @@
 import React from "react";
 import "./Comments.scss";
-import FormField from "../Components/FormField/FormField";
+import FormField from "../ComponentItems/FormField/FormField";
 import DefaultComments from "./DefaultComments/DefaultComments";
-import { PageDivideTablet } from "../Components/PageDivide/PageDivide";
+import { PageDivideTablet } from "../ComponentItems/PageDivide/PageDivide";
 import { v4 as uuidv4 } from "uuid";
 
 function Comments({ currentVideo }) {

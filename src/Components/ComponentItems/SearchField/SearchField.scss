@@ -23,6 +23,10 @@
   }
 }
 
+.search-field:focus-within {
+  border: 0.125rem solid $primary-2; // 2px
+}
+
 @include tablet {
   .search-field {
     margin-bottom: 0;
@@ -30,11 +34,5 @@
     &__nav-search-container {
       margin-right: 1.5rem; // 24px
     }
-  }
-}
-
-@include desktop {
-  .search-field:focus-within {
-    border: 0.125rem solid $primary-2; // 2px
   }
 }

@@ -1,10 +1,135 @@
-.uploadPage {
-  margin: 0 auto;
+@use "../../styles/partials/core/mixins" as *;
+@use "../../styles/partials/core/variables" as *;
 
-  &__form {
+.upload {
+  &__main-conatiner {
     margin: 0 1rem;
   }
+
+  &__title {
+    margin: 1.5rem 0 1rem; // 24px 16px
+  }
+
+  &__form-title {
+    color: $primary-3;
+    margin: 1rem 0 0.25rem; // 4px
+  }
+
   &__video-preview {
     width: 100%;
+    border-radius: 0.25rem;
+    background-color: $secondary-3;
+  }
+
+  &__form-text-input {
+    @include font-source(0.875rem, 1.375rem, 400);
+    @include height-width(6.75rem, 100%); // 108px
+    background-color: $secondary-4;
+    color: $primary-1;
+    border: 0.063rem solid $secondary-3; // 1px
+    padding: 0.75rem; // 12px
+    border-radius: 0.25rem; // 4px
+    margin-bottom: 0.5; // 8px
+
+    &:focus {
+      outline: none;
+      border: 0.125rem solid $primary-2; // 2px
+      box-shadow: 0 0 0.063rem $primary-1;
+    }
+
+    &:focus:invalid {
+      border-color: #d22d2d;
+    }
+  }
+
+  &__form-text-input-title {
+    height: 2.25rem;
+  }
+
+  &__cancel-button-container {
+    @include flex(center, center);
+    margin-bottom: 2.25rem;
+  }
+
+  &__cancel-button {
+    background: none;
+    border: none;
+    color: $primary-2;
+  }
+}
+
+@include tablet {
+  .upload {
+    margin: 0 auto;
+    max-width: 80rem; // 1280px
+
+    &__main-conatiner {
+      margin: 0 2.25rem; // 36px
+    }
+
+    &__title {
+      margin: 2.25rem 0 1.5rem; // 36px 24px
+    }
+
+    &__video-preview {
+      @include height-width(200px, 350px);
+      object-fit: cover;
+      margin: 0;
+    }
+
+    &__form-title {
+      margin: 1.5rem 0 0.25rem;
+      font-weight: 700;
+    }
+
+    &__form-text-input-description {
+      margin-bottom: 1rem;
+    }
+
+    &__button-cancel-container {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      align-content: center;
+      margin: 1.5rem 0;
+    }
+
+    &__cancel-button-container {
+      margin: 0 80px 0 0;
+    }
+  }
+}
+
+@include desktop {
+  .upload {
+    &__form-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    &__form-video-container {
+      flex-basis: 0;
+    }
+
+    &__form-input-button-container {
+      flex-basis: 100%;
+    }
+
+    &__form-text-input {
+      margin: 0;
+    }
+
+    &__video-preview {
+      margin-right: 1.5rem;
+    }
+
+    &__button-cancel-container {
+      margin: 1.5rem 0;
+    }
+
+    &__cancel-button-container {
+      margin: 0 80px 0 0;
+    }
   }
 }
