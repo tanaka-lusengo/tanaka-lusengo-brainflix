@@ -9,4 +9,8 @@ function PageDivideTablet() {
   return <hr className="page-divide page-divide__item--display-tablet" />;
 }
 
-export { PageDivideMobile, PageDivideTablet };
+function PageDivideUploadPage() {
+  return <hr className="page-divide page-divide__item--upload-page" />;
+}
+
+export { PageDivideMobile, PageDivideTablet, PageDivideUploadPage };

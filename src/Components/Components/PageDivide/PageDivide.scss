@@ -12,6 +12,10 @@
   &__item--mobile {
     margin: 0;
   }
+
+  &__item--upload-page {
+    margin: 0;
+  }
 }
 
 @include tablet {

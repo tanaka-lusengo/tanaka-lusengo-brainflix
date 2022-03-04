@@ -25,24 +25,4 @@ function Comments({ currentVideo }) {
   );
 }
 
-function CommentsClicked({ clickedVideo }) {
-  return (
-    <section className="comments">
-      <p className="comments__comment-counter">{`${clickedVideo.comments.length} Comments`}</p>
-      <div className="comments__input-container">
-        <div className="comments__avatar-container">
-          <div className="comments__avatar comments__avatar-form"></div>
-        </div>
-
-        <FormField />
-      </div>
-      <PageDivideTablet />
-
-      {clickedVideo.comments.map((comment) => {
-        return <DefaultComments key={uuidv4()} commentItem={comment} />;
-      })}
-    </section>
-  );
-}
-
-export { Comments, CommentsClicked };
+export default Comments;

@@ -18,7 +18,7 @@ function Header() {
             <SearchField />
             <div className="avatar avatar__img--display-mobile"></div>
           </div>
-          <Link to="/upload-page">
+          <Link to="/upload">
             <ButtonUpload
               buttonName={"UPLOAD"}
               iconSrc={uploadIcon}

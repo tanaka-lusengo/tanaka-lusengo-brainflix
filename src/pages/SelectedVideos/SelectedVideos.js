@@ -1,11 +1,11 @@
-import "./VideoDetails.scss";
+import "./SelectedVideos.scss";
 import { HeroVideoClicked } from "../../Components/HeroVideo/HeroVideo";
 import { MainContentClicked } from "../../Components/MainContent/MainContent";
 import { CommentsClicked } from "../../Components/Comments/Comments";
 import { AsideListClicked } from "../../Components/AsideList/AsideList";
 import React from "react";
 
-function VideoDetails({ mainAsideObj, clickedVideo }) {
+function SelectedVideos({ asideVideoList, clickedVideo, getAsideVideoList }) {
   return (
     <>
       <HeroVideoClicked clickedVideo={clickedVideo} />
@@ -16,7 +16,8 @@ function VideoDetails({ mainAsideObj, clickedVideo }) {
           <CommentsClicked clickedVideo={clickedVideo} />
         </div>
         <AsideListClicked
-          mainAsideObj={mainAsideObj}
+          asideVideoList={asideVideoList}
+          getAsideVideoList={getAsideVideoList}
           clickedVideo={clickedVideo}
         />
       </div>
@@ -24,4 +25,4 @@ function VideoDetails({ mainAsideObj, clickedVideo }) {
   );
 }
 
-export default VideoDetails;
+export default SelectedVideos;
