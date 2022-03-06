@@ -22,7 +22,6 @@ export default class Home extends Component {
   getSelectedVideo = (videoId) => axios.get(GET_VIDEOS_BY_ID_API_URL(videoId));
 
   // async function to call above promises and populate current state
-
   async populateState() {
     const resolve1 = await this.getAllVideos();
     const resolve2 = await this.getSelectedVideo(resolve1.data[0].id);
