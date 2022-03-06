@@ -1,14 +1,14 @@
 import React from "react";
 import "./HeroVideo.scss";
 
-function HeroVideo({ currentVideo }) {
+function HeroVideo({ selectedVideo }) {
   return (
     <section className="hero">
       <div className="hero__video-container">
         <video
           className="hero__video"
           controls
-          poster={currentVideo.image}
+          poster={selectedVideo.image}
         ></video>
       </div>
     </section>

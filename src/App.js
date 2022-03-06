@@ -1,58 +1,24 @@
-import React, { Component } from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
 import "./App.scss";
 import Header from "./Components/Header/Header";
-import HeroVideo from "./Components/HeroVideo/HeroVideo";
-import MainContent from "./Components/MainContent/MainContent";
-import Comments from "./Components/Comments/Comments";
-import AsideList from "./Components/AsideList/AsideList";
-import videoDetails from "./data/video-details.json";
-import videos from "./data/videos.json";
+import Home from "./pages/Home/Home";
+import UploadPage from "./pages/UploadPage/UploadPage";
 
-class App extends Component {
-  state = {
-    mainideoDetails: videoDetails,
-    asideVideoList: videos.slice(1),
-    currentVideo: videoDetails,
-  };
+import React from "react";
 
-  handleChangeVideo = (id) => {
-    this.setState({
-      currentVideo: this.state.mainideoDetails.filter((video) => {
-        let newVid;
-        if (video.id === id) {
-          newVid = video;
-        }
-        return newVid;
-      }),
-      asideVideoList: this.state.mainideoDetails.filter((list) => {
-        let newList;
-        if (list.id !== id) {
-          newList = list;
-        }
-        return newList;
-      }),
-    });
-  };
-
-  render() {
-    return (
-      <div className="App">
-        <Header />
-        <HeroVideo currentVideo={this.state.currentVideo[0]} />
-        <div className="content-container">
-          <div className="content-container__left">
-            <MainContent currentVideo={this.state.currentVideo[0]} />
-            <Comments currentVideo={this.state.currentVideo[0]} />
-          </div>
-
-          <AsideList
-            handleChangeVideo={this.handleChangeVideo}
-            mainAsideObj={this.state.asideVideoList}
-          />
-        </div>
-      </div>
-    );
-  }
+export default function App() {
+  return (
+    <div className="App">
+      <Header />
+      <Switch>
+        <Redirect from="/home" to="/" />
+        <Route path="/" exact component={Home} />
+        <Route
+          path="/videos/:videoId"
+          render={(renderProps) => <Home {...renderProps} />}
+        />
+        <Route path="/upload" component={UploadPage} />
+      </Switch>
+    </div>
+  );
 }
-
-export default App;

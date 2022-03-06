@@ -19,4 +19,13 @@ function ButtonComment({ iconSrc, iconAlt, buttonName }) {
   );
 }
 
-export { ButtonUpload, ButtonComment };
+function ButtonPublish({ iconSrc, iconAlt, buttonName }) {
+  return (
+    <div className="button__container button__container-publish">
+      <img className="button__icon" src={iconSrc} alt={iconAlt} />
+      <button className="button__button">{buttonName}</button>
+    </div>
+  );
+}
+
+export { ButtonUpload, ButtonComment, ButtonPublish };

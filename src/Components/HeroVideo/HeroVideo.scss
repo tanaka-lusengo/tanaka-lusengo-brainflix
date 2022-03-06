@@ -2,8 +2,8 @@
 @use "../../styles/partials/core/variables" as *;
 
 .hero {
-  margin: 0 auto;
   background-color: $secondary-1;
+  margin: 0 auto;
   text-align: center;
 
   &__video {

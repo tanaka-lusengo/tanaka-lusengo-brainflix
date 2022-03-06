@@ -1,25 +1,30 @@
 import React from "react";
 import "./Comments.scss";
-import FormField from "../Components/FormField/FormField";
+import FormField from "../ComponentItems/FormField/FormField";
 import DefaultComments from "./DefaultComments/DefaultComments";
-import { PageDivideTablet } from "../Components/PageDivide/PageDivide";
+import { PageDivideTablet } from "../ComponentItems/PageDivide/PageDivide";
 import { v4 as uuidv4 } from "uuid";
+import { sortByTimestamp } from "../../utilities/utilities";
 
-function Comments({ currentVideo }) {
+function Comments({ selectedVideo, handleCommentSubmit }) {
   return (
     <section className="comments">
-      <p className="comments__comment-counter">{`${currentVideo.comments.length} Comments`}</p>
+      <p className="comments__comment-counter">{`${selectedVideo.comments.length} Comments`}</p>
       <div className="comments__input-container">
         <div className="comments__avatar-container">
           <div className="comments__avatar comments__avatar-form"></div>
         </div>
-
-        <FormField />
+        <FormField handleCommentSubmit={handleCommentSubmit} />
       </div>
       <PageDivideTablet />
-
-      {currentVideo.comments.map((comment) => {
-        return <DefaultComments key={uuidv4()} commentItem={comment} />;
+      {selectedVideo.comments.sort(sortByTimestamp).map((comment) => {
+        return (
+          <DefaultComments
+            key={uuidv4()}
+            commentItem={comment}
+            NewComent={handleCommentSubmit}
+          />
+        );
       })}
     </section>
   );

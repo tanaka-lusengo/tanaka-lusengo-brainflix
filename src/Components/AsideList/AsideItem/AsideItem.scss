@@ -11,6 +11,7 @@
 
   &__img {
     @include height-width(4.375rem, 6.875rem); // 70px 110px
+    background-color: $secondary-3;
     border-radius: 0.25rem; // 4px
     margin-bottom: 1rem; // 16px
   }
