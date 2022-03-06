@@ -2,8 +2,8 @@
 
 @include desktop {
   .content-container {
+    display: flex;
     margin: 0 auto;
     max-width: 80rem; // 1280px
-    display: flex;
   }
 }

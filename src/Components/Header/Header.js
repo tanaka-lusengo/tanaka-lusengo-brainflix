@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./Header.scss";
 import SearchField from "../ComponentItems/SearchField/SearchField";
+import { Link } from "react-router-dom";
 import { ButtonUpload } from "../ComponentItems/Button/Button";
 import logo from "../../assets/logo/BrainFlix-logo.svg";
 import uploadIcon from "../../assets/icons/upload.svg";

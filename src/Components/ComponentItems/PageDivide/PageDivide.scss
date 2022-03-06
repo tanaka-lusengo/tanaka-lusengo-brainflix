@@ -44,8 +44,8 @@
 @include desktop {
   .page-divide {
     &__item--display-tablet {
-      margin-right: 0;
       margin-left: 2.25rem; // 36px
+      margin-right: 0;
     }
 
     &__item--upload-page-tablet {

@@ -1,3 +1,4 @@
+import React, { Component } from "react";
 import "./Home.scss";
 import HeroVideo from "../../Components/HeroVideo/HeroVideo";
 import MainContent from "../../Components/MainContent/MainContent";
@@ -5,8 +6,8 @@ import Comments from "../../Components/Comments/Comments";
 import AsideList from "../../Components/AsideList/AsideList";
 import { GET_VIDEOS_API_URL } from "../../api/endpoints";
 import { GET_VIDEOS_BY_ID_API_URL } from "../../api/endpoints";
+import { POST_COMMENTS_BY_ID } from "../../api/endpoints";
 import axios from "axios";
-import React, { Component } from "react";
 
 export default class Home extends Component {
   state = {
@@ -21,6 +22,7 @@ export default class Home extends Component {
   getSelectedVideo = (videoId) => axios.get(GET_VIDEOS_BY_ID_API_URL(videoId));
 
   // async function to call above promises and populate current state
+
   async populateState() {
     const resolve1 = await this.getAllVideos();
     const resolve2 = await this.getSelectedVideo(resolve1.data[0].id);
@@ -44,20 +46,20 @@ export default class Home extends Component {
     if (newId !== prevProps.match.params.videoId) {
       (async () => {
         try {
-          const resolve1 = await this.getAllVideos();
+          const response1 = await this.getAllVideos();
           // when side video is clicked, update selected video with matching id
           if (newId) {
-            const resolve2 = await this.getSelectedVideo(newId);
+            const response2 = await this.getSelectedVideo(newId);
             this.setState({
-              asideVideoList: resolve1.data,
-              selectedVideo: resolve2.data,
+              asideVideoList: response1.data,
+              selectedVideo: response2.data,
             });
           } else {
             // when home page is clicked - update selected video with original video id at [0] index.
-            const resolve2 = await this.getSelectedVideo(resolve1.data[0].id);
+            const response2 = await this.getSelectedVideo(response1.data[0].id);
             this.setState({
-              asideVideoList: resolve1.data,
-              selectedVideo: resolve2.data,
+              asideVideoList: response1.data,
+              selectedVideo: response2.data,
             });
           }
         } catch (e) {
@@ -65,9 +67,48 @@ export default class Home extends Component {
         }
       })();
     }
+    // checks for when selected video is chanaged, updates comment of selected video with matching id
+    if (newId !== prevProps.match.params.videoId) {
+      this.handleCommentSubmit = async (e) => {
+        e.preventDefault();
+
+        let form = e.target;
+        let commentVal = form.comment.value;
+        axios
+          .post(POST_COMMENTS_BY_ID(newId), this.newPostComment(commentVal))
+          .catch("componentDidUpdate handleCommentSubmit() error -->", e);
+        form.reset();
+      };
+    }
   }
 
-  // Form with state function
+  // Form functionality code block
+  newPostComment = (commentVal) => {
+    return {
+      name: "BrainStation Man",
+      comment: commentVal,
+    };
+  };
+
+  // axios promise to POST comment
+  postCommentCall = (id, commentVal) => {
+    axios.post(POST_COMMENTS_BY_ID(id), this.newPostComment(commentVal));
+  };
+
+  // Form POST coment event handler functionality
+  handleCommentSubmit = async (e) => {
+    e.preventDefault();
+    let form = e.target;
+    let commentVal = form.comment.value;
+    const response = await this.getAllVideos();
+    axios
+      .post(
+        POST_COMMENTS_BY_ID(response.data[0].id),
+        this.newPostComment(commentVal)
+      )
+      .catch("Initial handleCommentSubmit() error -->", e);
+    form.reset();
+  };
 
   render() {
     if (!this.state.selectedVideo) {
@@ -76,16 +117,19 @@ export default class Home extends Component {
 
     return (
       <>
-        <HeroVideo currentVideo={this.state.selectedVideo} />
+        <HeroVideo selectedVideo={this.state.selectedVideo} />
         <div className="content-container">
           <div>
-            <MainContent currentVideo={this.state.selectedVideo} />
+            <MainContent selectedVideo={this.state.selectedVideo} />
 
-            <Comments currentVideo={this.state.selectedVideo} />
+            <Comments
+              selectedVideo={this.state.selectedVideo}
+              handleCommentSubmit={this.handleCommentSubmit}
+            />
           </div>
           <AsideList
             asideVideoList={this.state.asideVideoList}
-            currentVideo={this.state.selectedVideo}
+            selectedVideo={this.state.selectedVideo}
           />
         </div>
       </>

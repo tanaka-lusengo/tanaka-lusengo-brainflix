@@ -2,17 +2,12 @@ import React from "react";
 import "./UploadPage.scss";
 import { PageDivideUploadMobile } from "../../Components/ComponentItems/PageDivide/PageDivide";
 import { PageDivideUploadTablet } from "../../Components/ComponentItems/PageDivide/PageDivide";
-import publishIcon from "../../assets/icons/publish.svg";
 import { ButtonPublish } from "../../Components/ComponentItems/Button/Button";
+import { handleUpload } from "../../utilities/utilities";
+import publishIcon from "../../assets/icons/publish.svg";
 import uploadVideoPreview from "../../assets/images/Upload-video-preview.jpg";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 function UploadPage() {
-  // let redirect = () => {
-  //   alert("video is being Uploaded");
-  //   return (window.location.href = "/");
-  // };
-
   return (
     <>
       <PageDivideUploadMobile />
@@ -20,7 +15,7 @@ function UploadPage() {
         <div className="upload__main-conatiner">
           <h1 className="upload__title">Upload Video</h1>
           <PageDivideUploadTablet />
-          <form className="upload__form">
+          <form className="upload__form" onSubmit={handleUpload}>
             <div className="upload__form-container">
               {/* video preview */}
               <div className="upload__form-video-container">
@@ -44,7 +39,7 @@ function UploadPage() {
                     type="text"
                     placeholder="Add a title to your video"
                     className="upload__form-text-input upload__form-text-input-title"
-                    name="videoDescription"
+                    name="titleVideo"
                     required
                   />
                 </div>
@@ -64,22 +59,20 @@ function UploadPage() {
               </div>
             </div>
             <PageDivideUploadTablet />
-            {/* submit button & canel */}
+            {/* submit & cancel button */}
             <div className="upload__button-cancel-container">
-              <Link to="/">
-                <ButtonPublish
-                  iconSrc={publishIcon}
-                  iconAlt={"upload video icon"}
-                  buttonName={"PUBLISH"}
-                  onClick={UploadPage}
-                />
-              </Link>
+              <ButtonPublish
+                iconSrc={publishIcon}
+                iconAlt={"upload video icon"}
+                buttonName={"PUBLISH"}
+              />
               <div className="upload__cancel-button-container">
-                <input
+                <button
                   className="upload__cancel-button"
-                  type="button"
-                  value="CANCEL"
-                />
+                  onClick={() => (window.location.href = "/")}
+                >
+                  CANCEL
+                </button>
               </div>
             </div>
           </form>
