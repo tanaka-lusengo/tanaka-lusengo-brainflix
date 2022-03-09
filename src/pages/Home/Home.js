@@ -4,8 +4,8 @@ import HeroVideo from "../../Components/HeroVideo/HeroVideo";
 import MainContent from "../../Components/MainContent/MainContent";
 import Comments from "../../Components/Comments/Comments";
 import AsideList from "../../Components/AsideList/AsideList";
-import { GET_VIDEOS_API_URL } from "../../api/endpoints";
-import { GET_VIDEOS_BY_ID_API_URL } from "../../api/endpoints";
+import { GET_VIDEOS } from "../../api/endpoints";
+import { GET_VIDEOS_BY_ID } from "../../api/endpoints";
 import { POST_COMMENTS_BY_ID } from "../../api/endpoints";
 import axios from "axios";
 
@@ -16,13 +16,12 @@ export default class Home extends Component {
   };
 
   // axios promise to GET all videos - used for aside list of videos
-  getAllVideos = () => axios.get(GET_VIDEOS_API_URL);
+  getAllVideos = () => axios.get(GET_VIDEOS);
 
   // axios promise  to GET specific or selected video details to populate home page and comments
-  getSelectedVideo = (videoId) => axios.get(GET_VIDEOS_BY_ID_API_URL(videoId));
+  getSelectedVideo = (videoId) => axios.get(GET_VIDEOS_BY_ID(videoId));
 
   // async function to call above promises and populate current state
-
   async populateState() {
     const resolve1 = await this.getAllVideos();
     const resolve2 = await this.getSelectedVideo(resolve1.data[0].id);
@@ -33,6 +32,16 @@ export default class Home extends Component {
   }
   catch(e) {
     console.log("populateState() error -->", e);
+  }
+
+  async populateStateComment(prevProps) {
+    let newId = this.props.match.params.videoId;
+    const resolve1 = await this.getAllVideos();
+    const resolve2 = await this.getSelectedVideo(newId);
+    this.setState({
+      asideVideoList: resolve1.data,
+      selectedVideo: resolve2.data,
+    });
   }
 
   // mounting phase, calls async function populateSate()
@@ -67,46 +76,40 @@ export default class Home extends Component {
         }
       })();
     }
-    // checks for when selected video is chanaged, updates comment of selected video with matching id
-    if (newId !== prevProps.match.params.videoId) {
-      this.handleCommentSubmit = async (e) => {
-        e.preventDefault();
-
-        let form = e.target;
-        let commentVal = form.comment.value;
-        axios
-          .post(POST_COMMENTS_BY_ID(newId), this.newPostComment(commentVal))
-          .catch("componentDidUpdate handleCommentSubmit() error -->", e);
-        form.reset();
-      };
-    }
   }
 
-  // Form functionality code block
+  // Form functionality code block for home page
   newPostComment = (commentVal) => {
     return {
-      name: "BrainStation Man",
+      name: "Tanaka Lusengo",
       comment: commentVal,
     };
   };
 
-  // axios promise to POST comment
+  // axios promise to POST comment for home page
   postCommentCall = (id, commentVal) => {
     axios.post(POST_COMMENTS_BY_ID(id), this.newPostComment(commentVal));
   };
 
-  // Form POST coment event handler functionality
+  // Form POST comment event handler functionality for home page
   handleCommentSubmit = async (e) => {
     e.preventDefault();
     let form = e.target;
     let commentVal = form.comment.value;
+    let newId = this.props.match.params.videoId;
     const response = await this.getAllVideos();
-    axios
-      .post(
-        POST_COMMENTS_BY_ID(response.data[0].id),
-        this.newPostComment(commentVal)
-      )
-      .catch("Initial handleCommentSubmit() error -->", e);
+
+    try {
+      if (newId) {
+        this.postCommentCall(newId, commentVal);
+        this.populateStateComment();
+      } else {
+        this.postCommentCall(response.data[0].id, commentVal);
+        this.populateState();
+      }
+    } catch (e) {
+      console.log("handleCommentSubmit() error -->", e);
+    }
     form.reset();
   };
 

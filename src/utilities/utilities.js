@@ -11,9 +11,7 @@ const Timestamp = (unixTimestamp) => {
 };
 
 // Notification function for UploadPage
-const handleUpload = (e) => {
-  e.preventDefault();
-
+const handleUploadComplete = () => {
   const swalCustom = Swal.mixin({
     customClass: {
       confirmButton: "sweet-alert-button",
@@ -44,4 +42,4 @@ const sortByTimestamp = (a, b) => {
   return 0;
 };
 
-export { Timestamp, handleUpload, sortByTimestamp };
+export { Timestamp, handleUploadComplete, sortByTimestamp };
