@@ -1,7 +1,17 @@
 @use "../../styles/partials/core/mixins" as *;
 
+.home {
+  &__loading {
+    @include flex(center, center);
+  }
+
+  &__content-container-left {
+    flex-grow: 1;
+  }
+}
+
 @include desktop {
-  .content-container {
+  .home__content-container {
     display: flex;
     margin: 0 auto;
     max-width: 80rem; // 1280px

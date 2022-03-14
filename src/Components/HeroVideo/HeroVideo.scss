@@ -17,6 +17,7 @@
 
     &__video {
       @include max-height-width(45rem, 75.5rem); // 720px 1208px
+      width: 68.75rem; // 1100px
       object-fit: cover;
       margin: 0 auto;
       aspect-ratio: 16 / 9;

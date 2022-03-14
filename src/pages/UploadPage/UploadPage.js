@@ -1,13 +1,47 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import "./UploadPage.scss";
 import { PageDivideUploadMobile } from "../../Components/ComponentItems/PageDivide/PageDivide";
 import { PageDivideUploadTablet } from "../../Components/ComponentItems/PageDivide/PageDivide";
 import { ButtonPublish } from "../../Components/ComponentItems/Button/Button";
-import { handleUpload } from "../../utilities/utilities";
+import { handleUploadComplete } from "../../utilities/utilities";
 import publishIcon from "../../assets/icons/publish.svg";
 import uploadVideoPreview from "../../assets/images/Upload-video-preview.jpg";
+import { POST_VIDEO } from "../../api/endpoints";
+import axios from "axios";
 
 function UploadPage() {
+  // Form functionality code block for upload page
+  const newUploadPost = (titleVal, descriptionVal) => {
+    return {
+      title: titleVal,
+      description: descriptionVal,
+    };
+  };
+
+  // axios promise to POST comment for upload page
+  const postUploadCall = (titleVal, descriptionVal) => {
+    axios.post(POST_VIDEO, newUploadPost(titleVal, descriptionVal));
+  };
+
+  // useHistory react hook to go to home page
+  const history = useHistory();
+  const handleHomeClick = () => {
+    history.push("/home");
+  };
+
+  // Form POST comment event handler functionality for upload page
+  const handleUploadSubmit = (e) => {
+    e.preventDefault();
+    let form = e.target;
+    let titleVal = form.title.value;
+    let descriptionVal = form.description.value;
+    postUploadCall(titleVal, descriptionVal);
+    form.reset();
+    handleUploadComplete();
+    handleHomeClick();
+  };
+
   return (
     <>
       <PageDivideUploadMobile />
@@ -15,7 +49,7 @@ function UploadPage() {
         <div className="upload__main-conatiner">
           <h1 className="upload__title">Upload Video</h1>
           <PageDivideUploadTablet />
-          <form className="upload__form" onSubmit={handleUpload}>
+          <form className="upload__form" onSubmit={handleUploadSubmit}>
             <div className="upload__form-container">
               {/* video preview */}
               <div className="upload__form-video-container">
@@ -39,7 +73,7 @@ function UploadPage() {
                     type="text"
                     placeholder="Add a title to your video"
                     className="upload__form-text-input upload__form-text-input-title"
-                    name="titleVideo"
+                    name="title"
                     required
                   />
                 </div>
@@ -53,7 +87,7 @@ function UploadPage() {
                   type="text"
                   placeholder="Add a description to your video"
                   className="upload__form-text-input upload__form-text-input-description"
-                  name="videoDescription"
+                  name="description"
                   required
                 ></textarea>
               </div>
