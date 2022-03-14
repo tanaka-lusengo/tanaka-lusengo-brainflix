@@ -19,16 +19,12 @@ const handleUploadComplete = () => {
     buttonsStyling: false,
   });
 
-  swalCustom
-    .fire({
-      title: "Sucess!",
-      text: "Video has been uploaded!",
-      icon: "success",
-      confirmButtonText: "RETURN HOME",
-    })
-    .then(() => {
-      window.location.href = "/";
-    });
+  swalCustom.fire({
+    title: "Sucess!",
+    text: "Video has been uploaded!",
+    icon: "success",
+    confirmButtonText: "RETURN HOME",
+  });
 };
 
 // sort comments in order by timestamp
@@ -42,4 +38,12 @@ const sortByTimestamp = (a, b) => {
   return 0;
 };
 
-export { Timestamp, handleUploadComplete, sortByTimestamp };
+// scroll to top page after side video click
+const handlePageScroll = () => {
+  window.scroll({
+    top: 0,
+    behavior: "smooth",
+  });
+};
+
+export { Timestamp, handleUploadComplete, sortByTimestamp, handlePageScroll };

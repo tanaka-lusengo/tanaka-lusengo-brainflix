@@ -18,8 +18,12 @@
     font-weight: 500;
   }
 
-  &__avatar-container {
+  &__avatar-container-form {
     margin: 2rem 1rem 0 0; // 32px 16px
+  }
+
+  &__avatar-container-default-comments {
+    margin-right: 1rem; // 16px
   }
 
   &__avatar {

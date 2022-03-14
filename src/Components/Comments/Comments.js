@@ -9,9 +9,11 @@ import { sortByTimestamp } from "../../utilities/utilities";
 function Comments({ selectedVideo, handleCommentSubmit }) {
   return (
     <section className="comments">
-      <p className="comments__comment-counter">{`${selectedVideo.comments.length} Comments`}</p>
+      <p className=" comments__comment-counter">
+        {selectedVideo.comments.length} Comments
+      </p>
       <div className="comments__input-container">
-        <div className="comments__avatar-container">
+        <div className="comments__avatar-container-form">
           <div className="comments__avatar comments__avatar-form"></div>
         </div>
         <FormField handleCommentSubmit={handleCommentSubmit} />

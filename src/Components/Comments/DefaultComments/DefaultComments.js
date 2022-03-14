@@ -8,7 +8,7 @@ function DefaultComments({ commentItem }) {
     <>
       <div className="comments">
         <div className="comments__post-container">
-          <div className="comments__avatar-container">
+          <div className="comments__avatar-container-default-comments">
             <div className="comments__avatar comments__avatar-past"></div>
           </div>
 

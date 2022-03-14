@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import "./UploadPage.scss";
 import { PageDivideUploadMobile } from "../../Components/ComponentItems/PageDivide/PageDivide";
 import { PageDivideUploadTablet } from "../../Components/ComponentItems/PageDivide/PageDivide";
@@ -23,6 +24,12 @@ function UploadPage() {
     axios.post(POST_VIDEO, newUploadPost(titleVal, descriptionVal));
   };
 
+  // useHistory react hook to go to home page
+  const history = useHistory();
+  const handleHomeClick = () => {
+    history.push("/home");
+  };
+
   // Form POST comment event handler functionality for upload page
   const handleUploadSubmit = (e) => {
     e.preventDefault();
@@ -32,6 +39,7 @@ function UploadPage() {
     postUploadCall(titleVal, descriptionVal);
     form.reset();
     handleUploadComplete();
+    handleHomeClick();
   };
 
   return (
